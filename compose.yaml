@@ -1,0 +1,11 @@
+services:
+  api:
+    build: .
+    ports:
+      - "127.0.0.1:4312:4312"
+    env_file: .env
+    volumes:
+      - database:/app/data
+    init: true
+volumes:
+  database:
