@@ -38,6 +38,8 @@ Para editar, baixe o arquivo `.excalidraw` e abra-o em [excalidraw.com](https://
 Requer Node.js 24+ e npm. O SQLite usa o módulo nativo do Node, sem instalação de banco ou chave de serviço externo.
 
 ```powershell
+git clone https://github.com/pedroigor-dev/webhook-relay.git
+cd webhook-relay
 npm ci
 npm run setup
 npm run build
