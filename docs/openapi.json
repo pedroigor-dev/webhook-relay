@@ -1,0 +1,181 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "HealthController_check",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Health"
+        ]
+      }
+    },
+    "/deliveries": {
+      "post": {
+        "operationId": "DeliveriesController_create",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDelivery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "api-key": []
+          }
+        ],
+        "tags": [
+          "Entregas"
+        ]
+      }
+    },
+    "/deliveries/dispatch": {
+      "post": {
+        "operationId": "DeliveriesController_dispatch",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "api-key": []
+          }
+        ],
+        "tags": [
+          "Entregas"
+        ]
+      }
+    },
+    "/deliveries/{id}": {
+      "get": {
+        "operationId": "DeliveriesController_get",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "api-key": []
+          }
+        ],
+        "tags": [
+          "Entregas"
+        ]
+      }
+    },
+    "/deliveries/{id}/retry": {
+      "post": {
+        "operationId": "DeliveriesController_retry",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "api-key": []
+          }
+        ],
+        "tags": [
+          "Entregas"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "webhook-relay",
+    "description": "",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "api-key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Api-Key"
+      },
+      "bootstrap": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Bootstrap-Key"
+      },
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "CreateDelivery": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "example": "http://127.0.0.1:4399/webhook"
+          },
+          "payload": {
+            "type": "object",
+            "example": {
+              "event": "order.confirmed",
+              "orderId": "order-123"
+            }
+          }
+        },
+        "required": [
+          "url",
+          "payload"
+        ]
+      }
+    }
+  }
+}
