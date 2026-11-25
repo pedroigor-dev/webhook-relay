@@ -1,4 +1,5 @@
 import { createApplication } from './app';
+
 async function bootstrap() {
   const app = await createApplication();
   await app.listen(
@@ -6,6 +7,7 @@ async function bootstrap() {
     process.env.HOST ?? '0.0.0.0',
   );
 }
+
 bootstrap().catch((error: Error) => {
   console.error(error.message);
   process.exitCode = 1;
