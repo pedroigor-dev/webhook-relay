@@ -143,16 +143,6 @@
         "type": "apiKey",
         "in": "header",
         "name": "X-Api-Key"
-      },
-      "bootstrap": {
-        "type": "apiKey",
-        "in": "header",
-        "name": "X-Bootstrap-Key"
-      },
-      "bearer": {
-        "scheme": "bearer",
-        "bearerFormat": "JWT",
-        "type": "http"
       }
     },
     "schemas": {

@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="1120" viewBox="0 0 1320 1120" role="img" aria-labelledby="title desc">
+<title id="title">Entrega de webhooks</title><desc id="desc">Fila persistente, assinatura HMAC e recuperação por lease</desc>
+<defs><marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 1 1 L 10 6 L 1 11" fill="none" stroke="#526079" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect width="1320" height="1120" rx="20" fill="#fff"/>
+<g font-family="Segoe UI, Arial, sans-serif" fill="#243047">
+<text x="52" y="63" font-size="31" font-weight="600" text-anchor="start" fill="#243047">
+<tspan x="52" dy="0">Entrega de webhooks</tspan>
+</text>
+<text x="52" y="96" font-size="17" font-weight="400" text-anchor="start" fill="#63718a">
+<tspan x="52" dy="0">Fila persistente, assinatura HMAC e recuperação por lease</tspan>
+</text>
+<path d="M 310 185 L 410 185" fill="none" stroke="#526079" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 680 185 L 800 185" fill="none" stroke="#526079" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 955 225 L 955 320" fill="none" stroke="#526079" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 955 400 L 955 495" fill="none" stroke="#526079" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 840 560 L 690 560" fill="none" stroke="#526079" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="733" y="525" width="41" height="25" rx="4" fill="white"/>
+<text x="740" y="543" font-size="16" font-weight="400" text-anchor="start" fill="#53617a">
+<tspan x="740" dy="0">sim</tspan>
+</text>
+<path d="M 955 625 L 955 735" fill="none" stroke="#526079" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="968" y="667" width="41" height="25" rx="4" fill="white"/>
+<text x="975" y="685" font-size="16" font-weight="400" text-anchor="start" fill="#53617a">
+<tspan x="975" dy="0">não</tspan>
+</text>
+<path d="M 810 810 L 690 810" fill="none" stroke="#526079" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="728" y="775" width="41" height="25" rx="4" fill="white"/>
+<text x="735" y="793" font-size="16" font-weight="400" text-anchor="start" fill="#53617a">
+<tspan x="735" dy="0">sim</tspan>
+</text>
+<path d="M 955 885 L 955 955 L 180 955 L 180 850" fill="none" stroke="#526079" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="783" y="923" width="41" height="25" rx="4" fill="white"/>
+<text x="790" y="941" font-size="16" font-weight="400" text-anchor="start" fill="#53617a">
+<tspan x="790" dy="0">não</tspan>
+</text>
+<path d="M 555 770 L 555 680 L 350 680 L 350 260 L 545 260 L 545 225" fill="none" stroke="#526079" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 60 145 Q 180.0 145.24 300 145 Q 310 145 310 155 L 309.78 215 Q 310 225 300 225 L 60 224.71 Q 50 225 50 215 L 49.59 155 Q 50 145 60 145 Z" fill="#e7f1ff" stroke="#243047" stroke-width="1.65" stroke-linejoin="round"/>
+<path d="M 60 145 Q 180.0 145.24 300 145 Q 310 145 310 155 L 309.78 215 Q 310 225 300 225 L 60 224.71 Q 50 225 50 215 L 49.59 155 Q 50 145 60 145 Z" transform="translate(.65 .45)" fill="none" stroke="#243047" stroke-width=".45" opacity=".35"/>
+<text x="180.0" y="177.7" font-size="18" font-weight="500" text-anchor="middle" fill="#243047">
+<tspan x="180.0" dy="0">POST /deliveries</tspan>
+<tspan x="180.0" dy="24.3">Chave + origem permitida</tspan>
+</text>
+<path d="M 420 145 Q 545.0 145.37 670 145 Q 680 145 680 155 L 679.54 215 Q 680 225 670 225 L 420 225.19 Q 410 225 410 215 L 410.0 155 Q 410 145 420 145 Z" fill="#eee8ff" stroke="#243047" stroke-width="1.65" stroke-linejoin="round"/>
+<path d="M 420 145 Q 545.0 145.37 670 145 Q 680 145 680 155 L 679.54 215 Q 680 225 670 225 L 420 225.19 Q 410 225 410 215 L 410.0 155 Q 410 145 420 145 Z" transform="translate(.65 .45)" fill="none" stroke="#243047" stroke-width=".45" opacity=".35"/>
+<text x="545.0" y="177.7" font-size="18" font-weight="500" text-anchor="middle" fill="#243047">
+<tspan x="545.0" dy="0">Fila SQLite</tspan>
+<tspan x="545.0" dy="24.3">Evento pendente</tspan>
+</text>
+<path d="M 810 145 Q 955.0 145.06 1100 145 Q 1110 145 1110 155 L 1109.77 215 Q 1110 225 1100 225 L 810 224.92 Q 800 225 800 215 L 800.65 155 Q 800 145 810 145 Z" fill="#e7f1ff" stroke="#243047" stroke-width="1.65" stroke-linejoin="round"/>
+<path d="M 810 145 Q 955.0 145.06 1100 145 Q 1110 145 1110 155 L 1109.77 215 Q 1110 225 1100 225 L 810 224.92 Q 800 225 800 215 L 800.65 155 Q 800 145 810 145 Z" transform="translate(.65 .45)" fill="none" stroke="#243047" stroke-width=".45" opacity=".35"/>
+<text x="955.0" y="177.7" font-size="18" font-weight="500" text-anchor="middle" fill="#243047">
+<tspan x="955.0" dy="0">Worker assume lease</tspan>
+<tspan x="955.0" dy="24.3">30 segundos</tspan>
+</text>
+<path d="M 810 320 Q 955.0 320.49 1100 320 Q 1110 320 1110 330 L 1109.51 390 Q 1110 400 1100 400 L 810 400.64 Q 800 400 800 390 L 799.84 330 Q 800 320 810 320 Z" fill="#e7f1ff" stroke="#243047" stroke-width="1.65" stroke-linejoin="round"/>
+<path d="M 810 320 Q 955.0 320.49 1100 320 Q 1110 320 1110 330 L 1109.51 390 Q 1110 400 1100 400 L 810 400.64 Q 800 400 800 390 L 799.84 330 Q 800 320 810 320 Z" transform="translate(.65 .45)" fill="none" stroke="#243047" stroke-width=".45" opacity=".35"/>
+<text x="955.0" y="352.7" font-size="18" font-weight="500" text-anchor="middle" fill="#243047">
+<tspan x="955.0" dy="0">HMAC + POST HTTP</tspan>
+<tspan x="955.0" dy="24.3">Timeout de 3 segundos</tspan>
+</text>
+<path d="M 955.0 495 L 1070 560.0 L 955.0 625 L 840 560.0 Z" fill="#fff1ce" stroke="#243047" stroke-width="1.65" stroke-linejoin="round"/>
+<path d="M 955.0 495 L 1070 560.0 L 955.0 625 L 840 560.0 Z" transform="translate(.65 .45)" fill="none" stroke="#243047" stroke-width=".45" opacity=".35"/>
+<text x="955.0" y="552.7" font-size="18" font-weight="500" text-anchor="middle" fill="#243047">
+<tspan x="955.0" dy="0">Resposta</tspan>
+<tspan x="955.0" dy="24.3">2xx?</tspan>
+</text>
+<path d="M 430 520 Q 555.0 520.18 680 520 Q 690 520 690 530 L 689.75 590 Q 690 600 680 600 L 430 599.42 Q 420 600 420 590 L 420.45 530 Q 420 520 430 520 Z" fill="#ddf5e6" stroke="#243047" stroke-width="1.65" stroke-linejoin="round"/>
+<path d="M 430 520 Q 555.0 520.18 680 520 Q 690 520 690 530 L 689.75 590 Q 690 600 680 600 L 430 599.42 Q 420 600 420 590 L 420.45 530 Q 420 520 430 520 Z" transform="translate(.65 .45)" fill="none" stroke="#243047" stroke-width=".45" opacity=".35"/>
+<text x="555.0" y="552.7" font-size="18" font-weight="500" text-anchor="middle" fill="#243047">
+<tspan x="555.0" dy="0">delivered</tspan>
+<tspan x="555.0" dy="24.3">Tentativa registrada</tspan>
+</text>
+<path d="M 955.0 735 L 1100 810.0 L 955.0 885 L 810 810.0 Z" fill="#fff1ce" stroke="#243047" stroke-width="1.65" stroke-linejoin="round"/>
+<path d="M 955.0 735 L 1100 810.0 L 955.0 885 L 810 810.0 Z" transform="translate(.65 .45)" fill="none" stroke="#243047" stroke-width=".45" opacity=".35"/>
+<text x="955.0" y="802.7" font-size="18" font-weight="500" text-anchor="middle" fill="#243047">
+<tspan x="955.0" dy="0">Falha transitória</tspan>
+<tspan x="955.0" dy="24.3">e tentativas &lt; 5?</tspan>
+</text>
+<path d="M 430 770 Q 555.0 769.63 680 770 Q 690 770 690 780 L 690.18 840 Q 690 850 680 850 L 430 850.46 Q 420 850 420 840 L 419.6 780 Q 420 770 430 770 Z" fill="#e7f1ff" stroke="#243047" stroke-width="1.65" stroke-linejoin="round"/>
+<path d="M 430 770 Q 555.0 769.63 680 770 Q 690 770 690 780 L 690.18 840 Q 690 850 680 850 L 430 850.46 Q 420 850 420 840 L 419.6 780 Q 420 770 430 770 Z" transform="translate(.65 .45)" fill="none" stroke="#243047" stroke-width=".45" opacity=".35"/>
+<text x="555.0" y="802.7" font-size="18" font-weight="500" text-anchor="middle" fill="#243047">
+<tspan x="555.0" dy="0">pending</tspan>
+<tspan x="555.0" dy="24.3">Backoff exponencial</tspan>
+</text>
+<path d="M 70 770 Q 180.0 770.34 290 770 Q 300 770 300 780 L 300.44 840 Q 300 850 290 850 L 70 849.33 Q 60 850 60 840 L 60.46 780 Q 60 770 70 770 Z" fill="#ffe5e5" stroke="#243047" stroke-width="1.65" stroke-linejoin="round"/>
+<path d="M 70 770 Q 180.0 770.34 290 770 Q 300 770 300 780 L 300.44 840 Q 300 850 290 850 L 70 849.33 Q 60 850 60 840 L 60.46 780 Q 60 770 70 770 Z" transform="translate(.65 .45)" fill="none" stroke="#243047" stroke-width=".45" opacity=".35"/>
+<text x="180.0" y="802.7" font-size="18" font-weight="500" text-anchor="middle" fill="#243047">
+<tspan x="180.0" dy="0">dead</tspan>
+<tspan x="180.0" dy="24.3">Histórico preservado</tspan>
+</text>
+<text x="60" y="1026" font-size="16" font-weight="400" text-anchor="start" fill="#63718a">
+<tspan x="60" dy="0">429, 5xx e falha de rede admitem retentativa. Redirects não são seguidos.</tspan>
+</text>
+<text x="60" y="1060" font-size="16" font-weight="400" text-anchor="start" fill="#63718a">
+<tspan x="60" dy="0">Entrega pelo menos uma vez: o receptor deduplica o X-Webhook-Id.</tspan>
+</text>
+</g></svg>

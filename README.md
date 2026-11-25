@@ -1,19 +1,27 @@
 # Webhook Relay
 
+Entrega assinada de eventos com retentativas e recuperação.
+
+![NestJS 11](https://img.shields.io/badge/NestJS-11-ea2845?logo=nestjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)
+![Node.js 24](https://img.shields.io/badge/Node.js-24-43853d?logo=nodedotjs&logoColor=white)
+[![CI](https://github.com/pedroigor-dev/webhook-relay/actions/workflows/ci.yml/badge.svg)](https://github.com/pedroigor-dev/webhook-relay/actions/workflows/ci.yml)
+
+[Executar localmente](#executar-localmente) · [Fluxo](#fluxo-principal) · [Estrutura](#estrutura-do-código) · [OpenAPI](docs/openapi.json)
+
 Fila persistente de webhooks em NestJS. Recebe um evento, entrega uma requisição assinada e mantém o histórico de tentativas para que o integrador consiga investigar falhas.
 
-```mermaid
-flowchart LR
-  API[POST deliveries] --> Queue[(Fila SQLite)]
-  Queue --> Worker[Worker e lease]
-  Worker --> Receiver[Receptor com HMAC]
-  Receiver --> Result{Resultado}
-  Result -->|2xx| Done[delivered]
-  Result -->|429 / 5xx / rede| Backoff[pending com backoff]
-  Backoff --> Queue
-  Result -->|4xx / redirect / limite| Dead[dead]
-  Dead -->|retry administrativo| Queue
-```
+| Interface          | Persistência                | Verificação                       |
+| ------------------ | --------------------------- | --------------------------------- |
+| API REST e Swagger | SQLite com WAL e transações | 7 testes HTTP + TypeScript strict |
+
+## Fluxo principal
+
+![Fluxograma de Webhook Relay](docs/diagrams/flow.svg)
+
+[Editar no Excalidraw](docs/diagrams/flow.excalidraw) · [Abrir SVG](docs/diagrams/flow.svg) · [Versão PNG](docs/diagrams/flow.png)
+
+Para editar, baixe o arquivo `.excalidraw` e abra-o em [excalidraw.com](https://excalidraw.com).
 
 ## Entrega e recuperação
 
@@ -63,12 +71,12 @@ A API usa **4312** e o receptor da demonstração usa **4399**. Abra **http://lo
 
 O comando `npm run demo` abre um receptor local, valida a assinatura e imprime o resultado persistido. No Docker, `127.0.0.1` dentro do container é o próprio container: ajuste o destino/origem para um receptor acessível e confiável nesse ambiente. A demonstração padrão foi escrita para execução local.
 
-| Método | Rota | Finalidade |
-|---|---|---|
-| POST | /deliveries | Enfileira evento com Idempotency-Key |
-| GET | /deliveries/:id | Consulta estado e tentativas |
-| POST | /deliveries/dispatch | Processa até dez eventos prontos |
-| POST | /deliveries/:id/retry | Abre nova geração para evento dead |
+| Método | Rota                  | Finalidade                           |
+| ------ | --------------------- | ------------------------------------ |
+| POST   | /deliveries           | Enfileira evento com Idempotency-Key |
+| GET    | /deliveries/:id       | Consulta estado e tentativas         |
+| POST   | /deliveries/dispatch  | Processa até dez eventos prontos     |
+| POST   | /deliveries/:id/retry | Abre nova geração para evento dead   |
 
 Todos os endpoints acima exigem `X-Api-Key`. `WORKER_ENABLED=false` desativa o processamento periódico para testes ou inspeção; o endpoint de dispatch continua disponível.
 
@@ -92,11 +100,34 @@ Sete cenários HTTP cobrem destino bloqueado, validação/autenticação, assina
 
 A fila usa um arquivo SQLite local e funciona sem Redis ou serviço externo. O histórico e os payloads são persistidos sem criptografia de aplicação: retenção, criptografia em repouso e gestão de segredos são decisões de implantação. A API não fornece transformação de payloads, cadastro multiempresa ou garantias de entrega exatamente uma vez.
 
-## Código
+## Estrutura do código
 
-`src/deliveries.ts` contém enfileiramento, worker, DTOs e rotas; `src/database.ts` mantém a transação local; `src/security.ts` protege a administração. Os testes levantam um receptor HTTP real e usam um banco temporário.
+```text
+src/
+  app.ts                     Bootstrap, validação global e Swagger
+  app.module.ts              Composição dos módulos
+  health/
+    health.controller.ts
+  database/
+    database.module.ts
+    database.service.ts      Conexão e transações SQLite
+  deliveries/
+    deliveries.module.ts
+    deliveries.controller.ts   Entrada HTTP e delegação
+    deliveries.dto.ts          Contratos e validação
+    deliveries.service.ts      Regras e fronteiras transacionais
+    deliveries.schema.ts       Definição das tabelas e índices
+    deliveries.types.ts        Tipos internos
+  security/
+    api-key.guard.ts
+test/                        Testes HTTP com banco temporário
+scripts/                     Configuração e demonstração
+docs/                        Contrato, exemplos e diagramas
+```
 
-Projeto de portfólio de Pedro Igor.
+Controllers recebem HTTP e delegam ao serviço. DTOs validam os dados antes do domínio. Cada módulo importa o módulo de banco e declara seus próprios providers. As regras e o SQL transacional permanecem no serviço de aplicação para tornar a atomicidade explícita, sem uma camada de repositório que apenas repetiria chamadas.
+
+A formatação é verificada com Prettier. O compilador usa `strict`, `noUnusedLocals` e `noUnusedParameters`. O workflow de CI instala as dependências pelo lockfile, verifica a formatação e executa os testes.
 
 ## Evidências locais
 
