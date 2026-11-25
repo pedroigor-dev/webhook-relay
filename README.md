@@ -5,7 +5,7 @@ Entrega assinada de eventos com retentativas e recuperação.
 ![NestJS 11](https://img.shields.io/badge/NestJS-11-ea2845?logo=nestjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)
 ![Node.js 24](https://img.shields.io/badge/Node.js-24-43853d?logo=nodedotjs&logoColor=white)
-[![CI](https://github.com/pedroigor-dev/webhook-relay/actions/workflows/ci.yml/badge.svg)](https://github.com/pedroigor-dev/webhook-relay/actions/workflows/ci.yml)
+![Testes HTTP](https://img.shields.io/badge/Testes_HTTP-7_cenarios-238636)
 
 [Executar localmente](#executar-localmente) · [Fluxo](#fluxo-principal) · [Estrutura](#estrutura-do-código) · [OpenAPI](docs/openapi.json)
 
@@ -127,7 +127,7 @@ docs/                        Contrato, exemplos e diagramas
 
 Controllers recebem HTTP e delegam ao serviço. DTOs validam os dados antes do domínio. Cada módulo importa o módulo de banco e declara seus próprios providers. As regras e o SQL transacional permanecem no serviço de aplicação para tornar a atomicidade explícita, sem uma camada de repositório que apenas repetiria chamadas.
 
-A formatação é verificada com Prettier. O compilador usa `strict`, `noUnusedLocals` e `noUnusedParameters`. O workflow de CI instala as dependências pelo lockfile, verifica a formatação e executa os testes.
+A formatação é verificada com Prettier. O compilador usa `strict`, `noUnusedLocals` e `noUnusedParameters`. O template em [docs/ci-template.yml](docs/ci-template.yml) instala as dependências pelo lockfile, verifica a formatação e executa os testes. Ele pode ser colocado em `.github/workflows/ci.yml` por uma credencial com permissão de workflows. A verificação deste projeto foi executada localmente.
 
 ## Evidências locais
 
